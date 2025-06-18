@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
@@ -10,21 +9,25 @@ interface HypothesisCardProps {
     analysis: string;
     summary: string[];
   };
+  isDarkTheme: boolean;
 }
 
-const HypothesisCard: React.FC<HypothesisCardProps> = ({ hypothesis }) => {
+const HypothesisCard: React.FC<HypothesisCardProps> = ({ hypothesis, isDarkTheme }) => {
+  const textColor = isDarkTheme ? 'text-white' : 'text-black';
+  const badgeClasses = isDarkTheme ? 'text-white border-white' : 'text-black border-black';
+
   return (
     <div className="space-y-6">
       {/* Hypothesis Statement */}
       <Card className="border-l-4 border-l-red-500 shadow-lg">
         <CardHeader>
-          <CardTitle className="flex items-center gap-2">
+          <CardTitle className={`flex items-center gap-2 ${textColor}`}>
             <span className="text-2xl">🧬</span>
             Hypothesis
           </CardTitle>
         </CardHeader>
         <CardContent>
-          <p className="text-lg font-semibold text-gray-800 leading-relaxed">
+          <p className={`text-lg font-semibold ${textColor} leading-relaxed`}>
             {hypothesis.hypothesis}
           </p>
         </CardContent>
@@ -33,13 +36,13 @@ const HypothesisCard: React.FC<HypothesisCardProps> = ({ hypothesis }) => {
       {/* Scientific Analysis */}
       <Card className="shadow-lg">
         <CardHeader>
-          <CardTitle className="flex items-center gap-2">
+          <CardTitle className={`flex items-center gap-2 ${textColor}`}>
             <span className="text-2xl">🔬</span>
             Scientific Analysis
           </CardTitle>
         </CardHeader>
         <CardContent>
-          <p className="text-gray-700 leading-relaxed whitespace-pre-line">
+          <p className={`${textColor} leading-relaxed whitespace-pre-line`}>
             {hypothesis.analysis}
           </p>
         </CardContent>
@@ -48,7 +51,7 @@ const HypothesisCard: React.FC<HypothesisCardProps> = ({ hypothesis }) => {
       {/* Summary Points */}
       <Card className="shadow-lg">
         <CardHeader>
-          <CardTitle className="flex items-center gap-2">
+          <CardTitle className={`flex items-center gap-2 ${textColor}`}>
             <span className="text-2xl">📋</span>
             Key Insights
           </CardTitle>
@@ -57,10 +60,10 @@ const HypothesisCard: React.FC<HypothesisCardProps> = ({ hypothesis }) => {
           <ul className="space-y-3">
             {hypothesis.summary.map((point, index) => (
               <li key={index} className="flex items-start gap-3">
-                <Badge variant="outline" className="mt-1 flex-shrink-0">
+                <Badge variant="outline" className={`mt-1 flex-shrink-0 ${badgeClasses}`}>
                   {index + 1}
                 </Badge>
-                <span className="text-gray-700">{point}</span>
+                <span className={textColor}>{point}</span>
               </li>
             ))}
           </ul>

@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 
@@ -13,9 +12,12 @@ interface KnowledgeGraphData {
 
 interface KnowledgeGraphProps {
   data: KnowledgeGraphData;
+  isDarkTheme: boolean;
 }
 
-const KnowledgeGraph: React.FC<KnowledgeGraphProps> = ({ data }) => {
+const KnowledgeGraph: React.FC<KnowledgeGraphProps> = ({ data, isDarkTheme }) => {
+  const textColor = isDarkTheme ? 'text-white' : 'text-black';
+
   const getNodeColor = (node: string) => {
     if (node.toLowerCase().includes('redhead') || node.toLowerCase().includes('red hair')) {
       return 'bg-red-100 border-red-300 text-red-800';
@@ -38,7 +40,7 @@ const KnowledgeGraph: React.FC<KnowledgeGraphProps> = ({ data }) => {
   return (
     <Card className="shadow-lg h-fit">
       <CardHeader>
-        <CardTitle className="flex items-center gap-2">
+        <CardTitle className={`flex items-center gap-2 ${textColor}`}>
           <span className="text-2xl">🕸️</span>
           Knowledge Graph
         </CardTitle>
@@ -47,7 +49,7 @@ const KnowledgeGraph: React.FC<KnowledgeGraphProps> = ({ data }) => {
         <div className="space-y-6">
           {/* Nodes */}
           <div>
-            <h4 className="font-semibold text-gray-700 mb-3">Concepts</h4>
+            <h4 className={`font-semibold ${textColor} mb-3`}>Concepts</h4>
             <div className="flex flex-wrap gap-2">
               {data.nodes.map((node, index) => (
                 <div
@@ -62,17 +64,17 @@ const KnowledgeGraph: React.FC<KnowledgeGraphProps> = ({ data }) => {
 
           {/* Relationships */}
           <div>
-            <h4 className="font-semibold text-gray-700 mb-3">Relationships</h4>
+            <h4 className={`font-semibold ${textColor} mb-3`}>Relationships</h4>
             <div className="space-y-3">
               {data.edges.map((edge, index) => (
-                <div key={index} className="bg-gray-50 p-3 rounded-lg border">
+                <div key={index} className="bg-red-50 p-3 rounded-lg border">
                   <div className="flex items-center gap-2 text-sm">
                     <span className="font-medium text-blue-700">{edge.from}</span>
-                    <span className="text-gray-500">→</span>
-                    <span className="italic text-gray-600 bg-white px-2 py-1 rounded border">
+                    <span className="text-red-500">→</span>
+                    <span className="italic text-red-600 bg-white px-2 py-1 rounded border">
                       {edge.relationship}
                     </span>
-                    <span className="text-gray-500">→</span>
+                    <span className="text-red-500">→</span>
                     <span className="font-medium text-purple-700">{edge.to}</span>
                   </div>
                 </div>
