@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { Switch } from '@/components/ui/switch';
 import { Moon, Sun } from 'lucide-react';
@@ -30,7 +29,8 @@ const Header = ({ isDarkTheme, onThemeToggle }: HeaderProps) => {
         <div
           className="absolute inset-0"
           style={{
-            backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' xmlns='http://www.w3.org/2000/svg'%3E%3Cdefs%3E%3Cpattern id='grid' width='60' height='60' patternUnits='userSpaceOnUse'%3E%3Cpath d='M 60 0 L 0 0 0 60' fill='none' stroke='%23f97316' stroke-width='0.8' opacity='0.3'/%3E%3C/pattern%3E%3C/defs%3E%3Crect width='100%25' height='100%25' fill='url(%23grid)' /%3E%3C/svg%3E")`
+            backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M 60 0 L 0 0 0 60' fill='none' stroke='%23f97316' stroke-width='0.8' opacity='0.3'/%3E%3C/svg%3E")`,
+            backgroundSize: '60px 60px',
           }}
         ></div>
       </div>
@@ -44,8 +44,14 @@ const Header = ({ isDarkTheme, onThemeToggle }: HeaderProps) => {
           <div className="space-y-6 sm:space-y-8">
             {/* Logo/Brand */}
             <div className="inline-flex items-center gap-3 sm:gap-4 mb-4">
-              <div className="w-10 h-10 sm:w-14 sm:h-14 lg:w-16 lg:h-16 bg-gradient-to-br from-orange-500 via-orange-600 to-orange-700 rounded-2xl sm:rounded-3xl flex items-center justify-center shadow-xl shadow-orange-500/30 border-2 border-orange-400/30">
-                <span className="text-xl sm:text-2xl lg:text-3xl font-bold text-white drop-shadow-lg">H</span>
+              <div className="relative flex items-center">
+                {/* Glow effect behind logo */}
+                <div className={`absolute inset-0 ${isDarkTheme ? 'bg-gradient-to-r from-blue-500/30 via-orange-500/40 to-orange-400/30' : 'bg-gradient-to-r from-blue-400/40 via-orange-500/50 to-orange-600/40'} rounded-full blur-lg scale-125 opacity-75`}></div>
+                <img 
+                  src="/logo.png" 
+                  alt="Ginger Science Logo" 
+                  className="w-14 h-14 sm:w-16 sm:h-16 md:w-18 md:h-18 lg:w-20 lg:h-20 xl:w-22 xl:h-22 relative z-10 object-contain"
+                />
               </div>
               <h1 className={`text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold ${isDarkTheme ? 'bg-gradient-to-r from-white via-orange-100 to-orange-200' : 'bg-gradient-to-r from-gray-900 via-orange-800 to-orange-900'} bg-clip-text text-transparent drop-shadow-2xl`}>
                 Redhead Hypothesis Forge
@@ -60,13 +66,13 @@ const Header = ({ isDarkTheme, onThemeToggle }: HeaderProps) => {
                 </p>
               </div>
               
-              {/* Description */}
               <p className={`${isDarkTheme ? 'text-gray-300' : 'text-gray-700'} text-base sm:text-lg lg:text-xl max-w-4xl mx-auto leading-relaxed font-light`}>
-                An advanced AI-powered scientific hypothesis engine that generates unique,
+                An advanced AI-powered scientific hypothesis engine that generates unique, 
+                plausible research hypotheses about redheads and their genetic, 
+                physiological, and behavioral characteristics.
               </p>
             </div>
             
-            {/* Stats or Features */}
             <div className="flex flex-col sm:flex-row justify-center gap-4 sm:gap-8 lg:gap-12 mt-8 sm:mt-12">
               <div className="text-center group">
                 <div className={`inline-block p-4 ${isDarkTheme ? 'bg-gradient-to-br from-black/40 to-orange-900/40 border-orange-500/30' : 'bg-gradient-to-br from-white/60 to-orange-100/60 border-orange-400/40'} rounded-xl border shadow-lg backdrop-blur-sm group-hover:scale-105 transition-transform duration-300`}>
