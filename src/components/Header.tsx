@@ -54,7 +54,7 @@ const Header = ({ isDarkTheme, onThemeToggle }: HeaderProps) => {
                 />
               </div>
               <h1 className={`text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold ${isDarkTheme ? 'bg-gradient-to-r from-white via-orange-100 to-orange-200' : 'bg-gradient-to-r from-gray-900 via-orange-800 to-orange-900'} bg-clip-text text-transparent drop-shadow-2xl`}>
-                Redhead Hypothesis Forge
+                HYPREDIA+
               </h1>
             </div>
             
